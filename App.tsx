@@ -8,14 +8,21 @@ import {
   View,
 } from 'react-native';
 import SampleTurboModule from './specs/NativeSampleModule';
+import Dnd from './specs/NativeDnd';
 
 function App(): React.JSX.Element {
   const [value, setValue] = React.useState('');
   const [reversedValue, setReversedValue] = React.useState('');
 
   const onPress = () => {
+    try{
     const revString = SampleTurboModule.reverseString(value);
-    setReversedValue(revString);
+    const val = Dnd.dndFun('dnd');
+    console.log('_____', val)
+    setReversedValue(revString + val);
+  }catch(err){
+    console.log(err,'dnd')
+  }
   };
 
   return (
